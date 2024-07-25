@@ -139,15 +139,15 @@ if __name__ == "__main__":
     from mpl_toolkits.mplot3d import Axes3D
 
     # Predicted Trajectory Visualization
-    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz0.csv', 'r') as csvfile:
+    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz0.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         x = [float(row[0]) for row in reader]
 
-    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz1.csv', 'r') as csvfile:
+    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz1.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         y = [float(row[0]) for row in reader]
 
-    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz2.csv', 'r') as csvfile:
+    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz2.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         z = [float(row[0]) for row in reader]
 
