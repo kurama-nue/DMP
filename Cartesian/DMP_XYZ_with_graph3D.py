@@ -251,7 +251,7 @@ def main():
 
     
     T = 0.02
-    # d = np.loadtxt('/home/tshr/testing_new_initial.csv', delimiter=',', skiprows=1)
+    # d = np.loadtxt('/home/rahul/testing_new_initial.csv', delimiter=',', skiprows=1)
     t1 = 0.025
     data = d[:, 1:]
 
@@ -343,9 +343,9 @@ def Merge_file():
     import os
 
 # Load the three CSV files
-    file1 = pd.read_csv('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz0.csv', header=None)
-    file2 = pd.read_csv('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz1.csv', header=None)
-    file3 = pd.read_csv('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz2.csv', header=None)
+    file1 = pd.read_csv('/home/rahul/Lab/DMP-main/Cartesian/xyz0.csv', header=None)
+    file2 = pd.read_csv('/home/rahul/Lab/DMP-main/Cartesian/xyz1.csv', header=None)
+    file3 = pd.read_csv('/home/rahul/Lab/DMP-main/Cartesian/xyz2.csv', header=None)
 
 # Add a serial number column
     max_length = max(len(file1), len(file2), len(file3))
@@ -378,15 +378,15 @@ if __name__ == "__main__":
     from mpl_toolkits.mplot3d import Axes3D
 
     # Predicted Trajectory Visualization
-    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz0.csv', 'r') as csvfile:
+    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz0.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         x = [float(row[0]) for row in reader]
 
-    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz1.csv', 'r') as csvfile:
+    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz1.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         y = [float(row[0]) for row in reader]
 
-    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz2.csv', 'r') as csvfile:
+    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz2.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         z = [float(row[0]) for row in reader]
 
