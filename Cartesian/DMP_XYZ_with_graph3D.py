@@ -25,7 +25,8 @@ def dmp_loop(ax,ax_new,beta,alpha, Nc):
     global g, y0,yd,yd_dot,yd_ddot,d,t1,length_data,T,path
     
     T = 0.02
-    path = '/home/rahul/catkin_workspace/DMP_cartesian_data.csv'
+    path = '/home/rahul/catkin_workspace/DMP_cartesian_data3.csv'
+    
     d = np.loadtxt(path, delimiter=',', skiprows=1)
     t1 = 0.024
     data = d[:, 1:]
@@ -337,7 +338,32 @@ def main():
         writer.writerows(data_list)
 
 
+def Merge_file():
+    import pandas as pd
+    import os
 
+# Load the three CSV files
+    file1 = pd.read_csv('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz0.csv', header=None)
+    file2 = pd.read_csv('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz1.csv', header=None)
+    file3 = pd.read_csv('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz2.csv', header=None)
+
+# Add a serial number column
+    max_length = max(len(file1), len(file2), len(file3))
+    serial_numbers = pd.Series(range(1, max_length + 1))
+
+# Create a DataFrame with the serial numbers and the data from the files
+    merged = pd.DataFrame({
+        'Serial No': serial_numbers,
+        'p_x': file1[0].reindex(range(max_length)).reset_index(drop=True),
+        'p_y': file2[0].reindex(range(max_length)).reset_index(drop=True),
+        'p_z': file3[0].reindex(range(max_length)).reset_index(drop=True),
+    })
+
+# Save the merged dataframe to a new CSV file
+
+    merged.to_csv("/home/rahul/catkin_workspace/merged_file.csv", index=False)
+
+    print("Files have been merged successfully into 'merged_file.csv'")
 
 
 if __name__ == "__main__":
@@ -352,15 +378,15 @@ if __name__ == "__main__":
     from mpl_toolkits.mplot3d import Axes3D
 
     # Predicted Trajectory Visualization
-    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz0.csv', 'r') as csvfile:
+    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz0.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         x = [float(row[0]) for row in reader]
 
-    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz1.csv', 'r') as csvfile:
+    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz1.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         y = [float(row[0]) for row in reader]
 
-    with open('/home/rahul/Lab/DMP-main/Cartesian/xyz2.csv', 'r') as csvfile:
+    with open('/home/rahul/LabData/DMP-main/Cartesian_XYZ/xyz2.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         z = [float(row[0]) for row in reader]
 
@@ -401,5 +427,8 @@ if __name__ == "__main__":
         
     else:
         print("Desired trajectory data is empty or contains invalid values.")
-
-
+        
+        #merge file xyz0 ,xyz1, xyz2
+Merge_file()
+        
+    
